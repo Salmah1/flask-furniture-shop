@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block content %}
+<!-- Container for product details -->
+<div class="container">
+  <!-- Left column for product image -->
+  <div class="left-column">
+    <img
+      class="furniture-img"
+      src="{{ url_for('static', filename=furniture.image) }}"
+      alt="{{ furniture.name }}"
+    />
+  </div>
+
+  <!-- Right column for product description and form -->
+  <div class="right-column">
+    <!-- Product description -->
+    <div class="product-description">
+      <span>Furniture Collection</span>
+      <h1>{{ furniture.name }}</h1>
+      <p>{{ furniture.description }}</p>
+      <div class="product-impact">
+        <strong>Environmental Impact:</strong>
+
+        <span
+          class="carbon-badge {% if furniture.carbon < 1.5 %} low {% elif furniture.carbon < 2.5 %} medium {% else %} high {% endif %}"
+        >
+          {{ furniture.carbon }} MT
+        </span>
+      </div>
+
+      <!-- Product price -->
+      <div class="product-price">
+        <strong>Price: £{{ furniture.price }}</strong>
+      </div>
+    </div>
+
+    <!-- Form for adding product to basket -->
+    <form
+      method="post"
+      action="{{ url_for('productPage', itemId=furniture.id) }}"
+    >
+      <!-- Quantity input -->
+      <div class="product-quantity">
+        <label for="quantity">Quantity:</label>
+        <input
+          type="number"
+          id="quantity"
+          name="quantity"
+          max="40"
+          value="1"
+          min="1"
+        />
+      </div>
+
+      <!-- Submit button for adding to basket -->
+      <button type="submit" class="card-btn basket-btn-large">
+        <i class="fas fa-shopping-basket"></i>
+        Add to Basket
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

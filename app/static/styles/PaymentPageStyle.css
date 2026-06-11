@@ -1,0 +1,259 @@
+/* Dark Mode */
+body.dark-mode .payment-card {
+  background: var(--hover);
+  color: white;
+}
+
+body.dark-mode .payment-card h1,
+body.dark-mode .payment-card label,
+body.dark-mode .payment-card p,
+body.dark-mode .payment-card h2 {
+  color: white;
+}
+
+body.dark-mode .payment-card hr {
+  border: 1px solid var(--border);
+}
+
+body.dark-mode .submit-btn:hover {
+  background: var(--dark-mode);
+}
+
+body.dark-mode .back-icon {
+  color: white;
+}
+
+body.dark-mode .success-card {
+  background: var(--hover);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .success-card hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .checkmark-circle {
+  background: var(--dark-mode);
+}
+
+body.dark-mode .success-card h2 {
+  color: white;
+}
+
+body.dark-mode .success-card p {
+  color: white;
+}
+
+body.dark-mode .continue-shopping-btn:hover {
+  background: var(--dark-mode);
+}
+
+.total-price-area,
+.payment-card label,
+.payment-card input,
+.submit-btn,
+.success-card p {
+  font-size: inherit;
+}
+
+.total-price-area {
+  text-align: center;
+}
+
+.payment-card {
+  padding: 50px;
+  margin: 80px auto;
+  width: 500px;
+  height: auto;
+  background: white;
+  box-sizing: border-box;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 1.5rem;
+}
+
+.payment-card h1 {
+  text-align: center;
+  margin: 0 0 30px;
+  font-size: 2em;
+  font-weight: 800;
+}
+
+.payment-card label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.payment-card input {
+  display: block;
+  margin-top: 10px;
+  padding: 16px 24px;
+  width: 100%;
+  box-sizing: border-box;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: 0.2s;
+}
+
+.payment-card textarea:focus,
+.payment-card input:focus {
+  background: var(--primary);
+  border: 3px solid var(--text);
+  border-radius: 16px;
+  outline: none;
+}
+
+.exp-cvc {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.expiration,
+.security {
+  width: 48%;
+}
+
+.submit-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: 0.16s ease-out;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background: var(--hover);
+}
+
+.back-icon {
+  background: none;
+  border: none;
+
+  color: var(--primary);
+  font-size: 28px !important;
+
+  text-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+.back-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Payment Successful Page Styles */
+.success-container {
+  min-height: calc(100vh - 180px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 20px;
+}
+
+.success-card {
+  width: 550px;
+  max-width: 90%;
+
+  background: white;
+  padding: 50px;
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  text-align: center;
+}
+
+.checkmark-circle {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+
+  margin: 0 auto 25px;
+}
+
+.checkmark-circle i {
+  color: white;
+  font-size: 3.5rem;
+}
+
+.success-card h2 {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 700;
+
+  margin: 0;
+}
+
+.success-card p {
+  color: var(--text);
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.success-card hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+.success-actions {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.success-actions a {
+  display: block;
+}
+
+.continue-shopping-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-size: 1.125rem;
+  border-radius: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+  padding: 12px;
+}
+
+.continue-shopping-btn:hover {
+  background: var(--hover);
+}
+
+@media (max-width: 768px) {
+  .payment-card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .exp-cvc {
+    gap: 20px;
+  }
+
+  .expiration,
+  .security {
+    width: 100%;
+  }
+}

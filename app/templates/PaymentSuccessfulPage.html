@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/PaymentPageStyle.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<!-- Success message card -->
+<div class="success-container">
+  <div class="success-card">
+    <!-- Checkmark circle -->
+    <div class="checkmark-circle">
+      <i class="fas fa-check"></i>
+    </div>
+
+    <!-- Success message -->
+    <h2>Order Confirmed</h2>
+
+    <hr />
+
+    <p>Thank you for shopping with The Furniture Shop.</p>
+
+    <p>Your order has been confirmed and is being processed.</p>
+
+    <!-- Continue shopping button -->
+    <div class="success-actions">
+      <a href="{{ url_for('galleryPage') }}">
+        <button class="continue-shopping-btn">Continue Shopping</button>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

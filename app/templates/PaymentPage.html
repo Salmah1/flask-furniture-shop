@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/PaymentPageStyle.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<!-- Payment form -->
+<div class="payment-page">
+  <div class="payment-card">
+    <!-- Go back to shopping button -->
+    <a href="{{ url_for('basket') }}" class="back-icon" aria-label="Go Back">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- Total price area -->
+    <div class="total-price-area">
+      <label for="total-price"
+        >Total Price: <span id="total-price">£{{ total_price }}</span></label
+      >
+    </div>
+    <br />
+    <hr />
+    <br />
+
+    <!-- Payment details section -->
+    <h1>Payment details</h1>
+    <form
+      id="payment-form"
+      action="{{ url_for('successful_checkout') }}"
+      method="post"
+    >
+      <!-- Name input -->
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter your name"
+        pattern="[A-Za-z ]+"
+        minlength="3"
+        maxlength="50"
+        required
+      /><br />
+
+      <!-- Card number input -->
+      <label for="card">Card Number</label>
+      <input
+        type="text"
+        id="card"
+        name="card"
+        placeholder="0000 0000 0000 0000"
+        pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"
+        title="Enter a 16 digit card number"
+        minlength="16"
+        maxlength="19"
+        required
+      /><br />
+
+      <!-- Expiration date -->
+      <div class="exp-cvc">
+        <div class="expiration">
+          <label for="expiry">Expiration date</label>
+          <input
+            type="text"
+            id="expiry"
+            name="expiry"
+            placeholder="MM/YY"
+            pattern="[0-9]{2}/[0-9]{2}"
+            required
+          /><br />
+        </div>
+
+        <!-- CVC input -->
+        <div class="security">
+          <label for="cvc">CVC</label>
+          <input
+            type="text"
+            id="cvc"
+            name="cvc"
+            placeholder="XXX"
+            pattern="[0-9]{3}"
+            title="Enter a 3 digit CVC"
+            minlength="3"
+            maxlength="3"
+            required
+          /><br />
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <button class="submit-btn" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- JavaScript file -->
+<script src="{{ url_for('static', filename='js/PaymentPageScript.js') }}"></script>
+
+{% endblock %}

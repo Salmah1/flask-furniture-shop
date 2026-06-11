@@ -1,0 +1,227 @@
+/* Dark Mode */
+.dark-mode .shopping-cart {
+  background: var(--hover);
+  color: white;
+}
+
+.dark-mode .shopping-title {
+  color: white;
+}
+
+.dark-mode .item-description span {
+  color: white;
+}
+
+.dark-mode .total-price {
+  color: white;
+}
+
+.dark-mode .buy-now {
+  background: var(--primary);
+}
+
+.dark-mode .buy-now:hover {
+  background: var(--dark-mode);
+}
+
+.dark-mode .update-btn:hover {
+  background: var(--dark-mode);
+}
+
+.dark-mode .empty-basket i {
+  color: white;
+}
+
+.shopping-cart,
+.shopping-cart *,
+.basket-items,
+.basket-items * {
+  box-sizing: border-box;
+}
+
+.shopping-cart {
+  width: 90%;
+  max-width: 750px;
+  margin: 80px auto;
+  background: white;
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 1.5rem;
+  padding: 0 20px 30px 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .shopping-cart {
+    width: 90%;
+    min-width: unset;
+  }
+}
+
+.shopping-title {
+  height: 60px;
+  border-bottom: 1px solid var(--border);
+  padding: 20px 30px;
+  color: #5e6977;
+  font-size: 1.125rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.basket-items {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+.basket-items:nth-child(3) {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.delete-btn {
+  cursor: pointer;
+  font-size: 30px !important;
+  font-weight: 500;
+  color: red;
+  background: none;
+  border: none;
+  margin-right: 20px;
+}
+
+.delete-btn:hover {
+  color: var(--dark-mode);
+}
+
+.items-image {
+  margin-right: 15px;
+  margin-left: 20px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.items-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.item-description {
+  flex: 1;
+}
+
+.item-description span {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.total-price {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 300;
+  padding-left: 30px;
+  margin-left: 10px;
+}
+
+.buy-now {
+  text-align: center;
+  font-size: 1rem;
+  padding: 10px;
+  border: none;
+  border-radius: 7px;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
+
+.buy-now:hover {
+  background-color: var(--hover);
+}
+
+.basket-quantity {
+  margin-top: 20px;
+  padding: 5px;
+}
+
+.basket-quantity input {
+  width: 45px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 30px;
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid var(--border);
+}
+
+.update-btn {
+  background: var(--primary);
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: white;
+  padding: 8px;
+  margin-left: 20px;
+}
+
+.update-btn:hover {
+  background: var(--hover);
+}
+
+/* Basket action buttons */
+.basket-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.basket-actions form {
+  margin: 0;
+}
+
+.empty-basket {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.empty-basket i {
+  font-size: 4rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.empty-basket h2 {
+  margin-bottom: 10px;
+}
+
+.empty-basket p {
+  margin-bottom: 25px;
+}
+
+@media (max-width: 768px) {
+  .basket-items {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .basket-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .items-image img {
+    width: 120px;
+  }
+
+  .buy-now,
+  .submit-btn {
+    width: 100%;
+  }
+}

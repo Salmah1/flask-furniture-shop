@@ -1,0 +1,117 @@
+{% extends "base.html" %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/ShoppingBasketStyle.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<!-- Container for Shopping cart -->
+<div class="shopping-cart">
+  <h1 class="shopping-title">Shopping Basket</h1>
+
+  <!-- Iterating over items in the basket -->
+  {% for item in basket %}
+  <div
+    class="basket-items"
+    data-id="{{ item.id }}"
+    data-price="{{ item.price }}"
+  >
+    <!-- Delete item form -->
+    <div class="button">
+      <form method="post" action="{{ url_for('basket') }}">
+        <input type="hidden" name="item_id" value="{{ item.id }}" />
+        <input type="hidden" name="action" value="delete" />
+        <button type="submit" class="delete-btn">&times;</button>
+      </form>
+    </div>
+
+    <!-- Item image -->
+    <div class="items-image">
+      <img
+        src="{{ url_for('static', filename=item.image) }}"
+        alt="{{ item.name }}"
+      />
+    </div>
+
+    <!-- Item name -->
+    <div class="item-description">
+      <span>{{ item.name }}</span>
+    </div>
+
+    <!-- Update item form -->
+    <form method="post" action="{{ url_for('basket') }}">
+      <div class="basket-quantity">
+        <input
+          type="number"
+          name="quantity"
+          value="{{ item.quantity }}"
+          id="quantity_{{ item.id }}"
+          min="1"
+          data-item-price="{{ item.price }}"
+          class="quantity-input"
+          max="40"
+        />
+
+        <input type="hidden" name="item_id" value="{{ item.id }}" />
+
+        <input type="hidden" name="action" value="update" />
+
+        <button type="submit" class="update-btn">Update</button>
+      </div>
+    </form>
+
+    <!-- Total price for the item -->
+    <div class="total-price">£{{ item.total }}</div>
+  </div>
+  {% endfor %}
+
+  <!-- Total price for the entire basket -->
+  {% if basket %}
+  <p class="total-price">Total price: £{{ total_price }}</p>
+  {% else %}
+  <div class="empty-basket">
+    <i class="fas fa-shopping-cart"></i>
+
+    <h2>Your basket is empty</h2>
+
+    <p>Browse our furniture collection and add some items.</p>
+
+    <a href="{{ url_for('galleryPage') }}">
+      <button class="buy-now">Continue Shopping</button>
+    </a>
+  </div>
+  {% endif %}
+
+  <!-- Basket action buttons -->
+  {% if basket %}
+  <div class="basket-actions">
+    <!-- Continue shopping button -->
+    <a href="{{ url_for('galleryPage') }}"
+      ><button class="buy-now">Continue Shopping</button></a
+    >
+
+    <!-- Clear basket button -->
+    <form
+      method="post"
+      action="{{ url_for('basket') }}"
+      onsubmit="return confirm('Are you sure you want to clear your basket?');"
+    >
+      <input type="hidden" name="action" value="clear" />
+
+      <button type="submit" class="buy-now">Clear Basket</button>
+    </form>
+
+    <!-- Buy now button -->
+    {% if basket|length > 0 %}
+    <a href="{{ url_for('checkout') }}">
+      <button class="buy-now">Buy Now</button>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+
+<!-- JavaScript files -->
+<script src="{{ url_for('static', filename='js/ShoppingBasketScript.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block content %}
+<!-- Sorting section -->
+<div class="sort-section">
+  <label for="sort">Sort by:</label>
+  <select id="sort" onchange="sortItems(this.value)">
+    <option value="name">Name</option>
+    <option value="price">Price</option>
+    <option value="environment">Environmental Impact</option>
+  </select>
+</div>
+
+<!-- Iterating over furniture items -->
+<div class="row">
+  {% for item in furniture %}
+  <div class="col">
+    <section class="card">
+      <!-- Displaying item image and price -->
+      <div class="card-preview">
+        <img
+          src="{{ url_for('static', filename=item.image) }}"
+          alt="{{ item.name }}"
+        />
+        <div class="card-price">£{{ item.price }}</div>
+      </div>
+
+      <!-- Displaying item name and description -->
+      <div class="card-content">
+        <h2 class="card-title">{{ item.name }}</h2>
+
+        <!-- Description loaded using AJAX -->
+        <div
+          class="hover-description card-description"
+          id="hoverDescription"
+          data-id="{{ item.id }}"
+        >
+          Loading...
+        </div>
+
+        <!-- Displaying carbon footprint -->
+        <div class="card-bottom">
+          <div class="card-properties" data-carbon="{{ item.carbon }}">
+            <span
+              class="carbon-badge {% if item.carbon < 1.5 %} low {% elif item.carbon < 2.5 %} medium {% else %} high {% endif %}"
+            >
+              {{ item.carbon }} MT
+            </span>
+          </div>
+        </div>
+
+        <!-- Buttons for adding to basket and viewing product page -->
+        <div class="button-group">
+          <a
+            class="card-btn basket-btn"
+            href="{{ url_for('add_to_basket', furniture_id=item.id) }}"
+          >
+            <i class="fas fa-shopping-basket"></i>
+          </a>
+          <a
+            class="card-btn"
+            href="{{ url_for('productPage', itemId=item.id) }}"
+          >
+            <span class="see-details-btn">See Details</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+  {% endfor %}
+</div>
+
+<div id="noResults" class="empty-search" style="display: none">
+  <h2>No furniture found</h2>
+  <p>Try a different search term.</p>
+</div>
+
+<!-- JavaScript files -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% endblock %}

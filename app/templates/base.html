@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/style.css') }}"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    {% block extra_css %}{% endblock %}
+
+    <title>The Furniture Shop</title>
+  </head>
+
+  <body>
+    <!-- Accessibility Modal -->
+    <div id="accessibilityModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Accessibility Settings</h3>
+
+          <button class="close-modal" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="setting-row">
+          <span>Dark Mode</span>
+          <input type="checkbox" id="darkModeToggle" />
+        </div>
+
+        <div class="setting-row">
+          <span>Brightness</span>
+
+          <div>
+            <button id="increase-brightness" class="access-btn">+</button>
+            <button id="decrease-brightness" class="access-btn">−</button>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <span>Text Size</span>
+
+          <div>
+            <button onclick="increaseFontSize()" class="access-btn">+</button>
+            <button onclick="decreaseFontSize()" class="access-btn">−</button>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <span>Readable Text</span>
+          <input type="checkbox" id="fontToggle" />
+        </div>
+
+        <div class="setting-row">
+          <span>Read Pages</span>
+          <input type="checkbox" id="speechToggle" />
+        </div>
+
+        <button class="access-btn full-width" onclick="resetAccessibility()">
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <a
+          class="home-icon"
+          href="{{ url_for('galleryPage') }}"
+          aria-label="Home"
+        >
+          <i class="fas fa-home"></i>
+        </a>
+
+        <button
+          class="access-icon"
+          onclick="toggleSidebar()"
+          aria-label="Accessibility Settings"
+        >
+          <i class="fas fa-universal-access"></i>
+        </button>
+      </div>
+
+      <h1 class="title">The Furniture Shop</h1>
+
+      <div class="nav-right">
+        {% if request.endpoint == 'galleryPage' %}
+        <input type="text" id="liveSearch" placeholder="Search furniture..." />
+        {% endif %}
+
+        <a class="cart-icon" href="{{ url_for('basket') }}" aria-label="Basket">
+          <i class="fas fa-shopping-basket"></i>
+
+          {% if session.get('basket') %}
+          <span class="cart-count"> {{ session.get('basket')|length }} </span>
+          {% endif %}
+        </a>
+      </div>
+    </nav>
+
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <div class="flash-message">{{ message }}</div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <!-- Only content gets brightness + text-size -->
+    <div id="content-wrapper">
+      <div class="content" id="content">{% block content %}{% endblock %}</div>
+    </div>
+
+    <!-- Footer  -->
+    <footer class="footer">
+      <p>The Furniture Shop</p>
+      <p>Flask E-Commerce Project</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
