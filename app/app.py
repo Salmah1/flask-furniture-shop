@@ -1,13 +1,21 @@
 from flask import Flask, redirect, render_template, session, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from jinja2 import TemplateNotFound
+import os
 
 app = Flask(__name__)
 # Secret key used for Flask sessions
 
-app.config['SECRET_KEY'] = 'your-secret-key'
+
+app.config['SECRET_KEY'] = os.environ.get(
+    "SECRET_KEY",
+    "dev-secret-key"
+)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.sqlite3'
 db = SQLAlchemy(app)
+
+with app.app_context():
+    db.create_all()
 
 # Furniture model for database
 class Furniture(db.Model):
