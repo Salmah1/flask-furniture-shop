@@ -45,8 +45,35 @@ with app.app_context():
                 "image": "images/table_2.jpg",
                 "carbon": 2.15
             },
-            # add the remaining 4 items...
-        ]
+            {
+                "name": "Brooklyn Dining Table", 
+                "price": 229, 
+                "description": "Crafted with a sleek metal frame, this piece boasts a design that seamlessly blends with any decor. Perfect for intimate gatherings, this table redefines modern sophistication.", 
+                "image": "images/table_3.jpg", 
+                "carbon": 2.85
+            },
+            {
+                "name": "Ashford Dining Chair", 
+                "price": 199, 
+                "description": "This dining chair blends seamlessly with various styles while adding sophistication to your dining area. It creates an inviting and comfortable seating experience.", 
+                "image": "images/chair_1.jpg", 
+                "carbon": 1.25
+            },
+            {
+                "name": "Harlow Dining Chair", 
+                "price": 139, 
+                "description": "The Melia Dining Chairs are one to have if you're looking to elevate the style in your dining space. The Melia chair has a rustic homely feel that looks great in any home.", 
+                "image": "images/chair_2.jpg", 
+                "carbon": 2.05
+            },
+            {
+                "name": "Brooklyn Dining Chair", 
+                "price": 99, 
+                "description": "The chair's sleek silhouette and PU leather upholstery radiates contemporary elegance, providing a luxurious and sophisticated look for your dining area.", 
+                "image": "images/chair_3.jpg", 
+                "carbon": 1.18
+            }
+       ]
 
         for item in furniture:
             db.session.add(Furniture(**item))
