@@ -12,10 +12,8 @@ app.config['SECRET_KEY'] = os.environ.get(
     "dev-secret-key"
 )
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.sqlite3'
-db = SQLAlchemy(app)
 
-with app.app_context():
-    db.create_all()
+db = SQLAlchemy(app)
 
 # Furniture model for database
 class Furniture(db.Model):
@@ -26,6 +24,34 @@ class Furniture(db.Model):
     description = db.Column(db.Text)
     image = db.Column(db.String(128))
     carbon = db.Column(db.Float, nullable=False)
+
+
+with app.app_context():
+    db.create_all()
+
+    if Furniture.query.count() == 0:
+        furniture = [
+            {
+                "name": "Ashford Dining Table",
+                "price": 549,
+                "description": "This table seamlessly merges form and function, featuring an extendable top that effortlessly accommodates up to six guests, making it perfect for intimate family dinners.",
+                "image": "images/table_1.jpg",
+                "carbon": 1.45
+            },
+            {
+                "name": "Harlow Dining Table",
+                "price": 149,
+                "description": "Step into the world of the Ezra range with this exquisite dining table, an absolute must-have for your home! Elevating your dining experience to a whole new level.",
+                "image": "images/table_2.jpg",
+                "carbon": 2.15
+            },
+            # add the remaining 4 items...
+        ]
+
+        for item in furniture:
+            db.session.add(Furniture(**item))
+
+        db.session.commit()
 
 
 # Route for homepage
